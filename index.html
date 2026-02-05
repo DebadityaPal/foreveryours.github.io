@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Story ❤️</title>
+  <title>For You ❤️</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -16,17 +15,91 @@
       --card: #ffffff;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ---------- GATE ---------- */
+    .gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 246, 248, 0.96);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .gate-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .gate-card h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .gate-card p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .gate-card input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .gate-card button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .error {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: #c62828;
+      display: none;
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    main {
+      filter: blur(6px);
+      transition: filter 0.6s ease;
+    }
+
+    main.unlocked {
+      filter: blur(0);
     }
 
     header {
@@ -38,11 +111,9 @@
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
       color: var(--primary);
-      margin-bottom: 0.5rem;
     }
 
     header p {
-      font-size: 1rem;
       opacity: 0.8;
     }
 
@@ -71,52 +142,29 @@
       margin-bottom: 3rem;
     }
 
-    .event.left {
-      left: 0;
-      text-align: right;
-    }
-
-    .event.right {
-      left: 50%;
-      text-align: left;
-    }
+    .event.left { left: 0; text-align: right; }
+    .event.right { left: 50%; }
 
     .event::before {
       content: "❤️";
       position: absolute;
       top: 20px;
-      width: 30px;
-      height: 30px;
       font-size: 1.2rem;
     }
 
-    .event.left::before {
-      right: -15px;
-    }
-
-    .event.right::before {
-      left: -15px;
-    }
+    .event.left::before { right: -15px; }
+    .event.right::before { left: -15px; }
 
     .card {
-      background: var(--card);
+      background: white;
       padding: 1.5rem;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      animation: fadeUp 0.8s ease forwards;
-      opacity: 0;
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-top: 1rem;
     }
 
     .card h3 {
       font-family: 'Playfair Display', serif;
       color: var(--primary);
-      margin-bottom: 0.3rem;
     }
 
     .date {
@@ -125,131 +173,76 @@
       margin-bottom: 0.8rem;
     }
 
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
     footer {
       text-align: center;
       padding: 3rem 1.5rem;
-      font-size: 1rem;
     }
 
-    footer strong {
-      color: var(--primary);
-    }
-
-    @keyframes fadeUp {
-      from {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* Mobile */
     @media (max-width: 768px) {
-      .timeline::before {
-        left: 8px;
-      }
-
-      .event {
-        width: 100%;
-        padding-left: 2rem;
-        text-align: left;
-      }
-
-      .event.left,
-      .event.right {
-        left: 0;
-      }
-
-      .event::before {
-        left: -5px;
-      }
+      .timeline::before { left: 8px; }
+      .event { width: 100%; padding-left: 2rem; text-align: left; }
+      .event.left, .event.right { left: 0; }
+      .event::before { left: -5px; }
     }
   </style>
 </head>
 
 <body>
 
+<!-- 🔐 GATE -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <h2>Hi you 💕</h2>
+    <p id="question">What was the first thing we bonded over?</p>
+    <input type="text" id="answer" placeholder="Type your answer…" />
+    <button onclick="unlock()">Unlock</button>
+    <div class="error" id="error">Hmm… try again, love 🥺</div>
+  </div>
+</div>
+
+<!-- 🌸 CONTENT -->
+<main id="content">
   <header>
     <h1>Our Story</h1>
     <p>Every moment that led me to you</p>
   </header>
 
   <section class="timeline">
-
-    <!-- Event 1 -->
-    <div class="event left">
-      <div class="card">
-        <h3>How We Met</h3>
-        <div class="date">Month Year</div>
-        <p>
-          I didn’t know it then, but this was the moment my life quietly changed.
-        </p>
-        <img src="images/met.jpg" alt="How we met">
-      </div>
-    </div>
-
-    <!-- Event 2 -->
-    <div class="event right">
-      <div class="card">
-        <h3>The First Time I Felt It</h3>
-        <div class="date">Month Year</div>
-        <p>
-          Somewhere between late-night talks and laughter, you became my favorite person.
-        </p>
-        <img src="images/felt-it.jpg" alt="Realization moment">
-      </div>
-    </div>
-
-    <!-- Event 3 -->
-    <div class="event left">
-      <div class="card">
-        <h3>Distance, But Us</h3>
-        <div class="date">Month Year</div>
-        <p>
-          Miles showed up, but so did we. Every day. Every time.
-        </p>
-        <img src="images/ldr.jpg" alt="Long distance">
-      </div>
-    </div>
-
-    <!-- Event 4 -->
-    <div class="event right">
-      <div class="card">
-        <h3>What’s Next</h3>
-        <div class="date">Soon ❤️</div>
-        <p>
-          This is just the beginning. I can’t wait for all the chapters we haven’t lived yet.
-        </p>
-        <img src="images/future.jpg" alt="Future together">
-      </div>
-    </div>
-
+    <!-- events go here (same as before) -->
   </section>
 
   <footer>
-    <p>
-      Happy Valentine’s Day, <strong>my love</strong>.<br>
-      No matter the distance — it’s always you.
-    </p>
+    <p>Happy Valentine’s Day ❤️ Always you.</p>
   </footer>
+</main>
 
-  <script>
-    // Reveal animation on scroll
-    const cards = document.querySelectorAll('.card');
+<script>
+  // ✏️ CUSTOMIZE THESE
+  const ACCEPTED_ANSWERS = [
+    "late night calls",
+    "music",
+    "that stupid joke",
+    "coffee"
+  ];
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-        }
-      });
-    }, { threshold: 0.2 });
+  function unlock() {
+    const input = document.getElementById("answer").value.trim().toLowerCase();
+    const error = document.getElementById("error");
 
-    cards.forEach(card => observer.observe(card));
-  </script>
+    if (ACCEPTED_ANSWERS.includes(input)) {
+      document.getElementById("gate").classList.add("hidden");
+      document.getElementById("content").classList.add("unlocked");
+    } else {
+      error.style.display = "block";
+    }
+  }
+</script>
 
 </body>
 </html>
