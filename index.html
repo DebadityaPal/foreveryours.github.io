@@ -24,6 +24,7 @@
       padding: 0;
     }
 
+
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
@@ -97,6 +98,10 @@
       font-size: 0.85rem;
       color: #c62828;
       display: none;
+    }
+
+    .tilt {
+      transform: rotate(-90deg);
     }
 
     /* ---------- MAIN CONTENT ---------- */
@@ -258,6 +263,21 @@
           <img src="images/Day_we_met.jpeg" alt="The place we first met">
         </div>
       </div>
+
+      <div class="event right">
+        <div class="card">
+          <h3>Our First Outing</h3>
+          <div class="date">10 December 2022</div>
+          <p>
+            Surrounded by friends, laughter, and noise — somehow you were the only thing I noticed.
+            That’s when it really felt like <em>us</em>.
+          </p>
+          <img src="images/First_outing.jpeg" alt="Our first outing together">
+          <img src="images/first-outing-2.jpg" alt="Our first outing together" class="tilt">
+        </div>
+      </div>
+
+
     </section>
 
     <footer>
@@ -266,7 +286,8 @@
   </main>
 
   <audio id="bg-music" loop>
-    <source src="RANGISARI (Video)  JugJugg Jeeyo  Varun D, Kiara A, Anil K, Neetu K  Kanishk & Kavita.mp3" type="audio/mpeg">
+    <source src="RANGISARI (Video)  JugJugg Jeeyo  Varun D, Kiara A, Anil K, Neetu K  Kanishk & Kavita.mp3"
+      type="audio/mpeg">
   </audio>
 
   <script>
