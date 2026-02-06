@@ -146,8 +146,7 @@
       width: 50%;
       padding: 1.5rem;
       margin-bottom: 3rem;
-      display: flex;
-      align-items: stretch;
+      display: block; /* Fixed from flex to prevent layout compression */
     }
 
     .event.left {
@@ -165,6 +164,7 @@
       position: absolute;
       top: 24px;
       font-size: 1.2rem;
+      z-index: 2;
     }
 
     .event.left::before {
@@ -182,9 +182,9 @@
       border-radius: 18px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
       width: 100%;
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
+      height: auto; /* Ensures card expands with content */
+      display: block;
+      overflow: visible; /* Prevents shadow clipping */
     }
 
     .card h3 {
@@ -203,43 +203,14 @@
       margin-bottom: 1rem;
     }
 
-    /* ---------------- IMAGES ---------------- */
-    .card img {
+    /* ---------------- IMAGES & MEDIA ---------------- */
+    .card img, .card video {
       display: block;
       width: 100%;
-      /* scales down to card width */
-      max-width: 400px;
-      /* caps image width */
+      max-width: 100%;
       height: auto;
-      /* preserves aspect ratio */
       border-radius: 12px;
-      margin: 0 auto;
-      /* centers the image */
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
-      margin-top: 1rem;
-    }
-
-    .image-grid img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .tilt {
-      transform: rotate(-90deg);
-      transform-origin: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .other-tilt {
-      transform: rotate(90deg);
-      transform-origin: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      margin: 1rem 0;
     }
 
     /* ---------------- FOOTER ---------------- */
@@ -264,17 +235,12 @@
       .event::before {
         left: -5px;
       }
-
-      .image-grid {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🔐 GATE -->
   <div class="gate" id="gate">
     <div class="gate-card">
       <h2>Hi you 💕</h2>
@@ -285,7 +251,6 @@
     </div>
   </div>
 
-  <!-- 🌸 CONTENT -->
   <main id="content">
     <header>
       <h1>Our Story</h1>
@@ -293,7 +258,7 @@
     </header>
 
     <section class="timeline">
-      <!-- events go here (same as before) -->
+      
       <div class="event left">
         <div class="card">
           <h3>The Day We Met</h3>
@@ -327,31 +292,31 @@
             That’s when it really felt like <em>us</em>.
           </p>
           <img src="images/First_outing.jpeg" alt="Our first outing together">
-          <img src="images/Early_date.jpeg" alt="Our first outing together" class="tilt">
+          <img src="images/Early_date.jpeg" alt="Early date">
         </div>
       </div>
 
       <div class="event right">
         <div class="card">
-          <h3>Our First Outing</h3>
+          <h3>Our First Picture</h3>
           <div class="date">12 December 2022</div>
           <p>
             First time we took a pic together.
           </p>
-          <img src="images/First_picture.jpeg" alt="Our first outing together">
+          <img src="images/First_picture.jpeg" alt="Our first picture together">
         </div>
       </div>
 
       <div class="event left">
         <div class="card">
-          <h3>Our First Proper December 2022
+          <h3>Our First Proper Date</h3>
+          <div class="date">December 2022</div>
+          <p>
+            No friends, no distractions — just you and me.
+            That was the day it stopped feeling new and started feeling right.
+          </p>
+          <img src="images/Proper_date.jpeg" alt="Our first proper date">
         </div>
-        <p>
-          No friends, no distractions — just you and me.
-          That was the day it stopped feeling new and started feeling right.
-        </p>
-        <img src="images/Proper_date.jpeg" alt="Our first proper date" class="other-tilt">
-      </div>
       </div>
 
       <div class="event right">
@@ -386,9 +351,9 @@
             Luggage, laughter, and a little chaos —
             that trip reminded me how much fun life is when we’re together.
           </p>
-          <img src="images/First_trip.jpeg" alt="Our first trip with friends">
-          <img src="images/First_travel.jpeg" alt="Our first trip with friends">
-          <img src="images/First_photoshoot.jpeg" alt="Our first trip with friends">
+          <img src="images/First_trip.jpeg" alt="Trip">
+          <img src="images/First_travel.jpeg" alt="Travel">
+          <img src="images/First_photoshoot.jpeg" alt="Photoshoot">
         </div>
       </div>
 
@@ -439,7 +404,7 @@
             Watching you fall asleep, I realized how peaceful it feels just being near you.
             Some moments don’t need words — they just stay in your heart.
           </p>
-          <img src="images/sleep.jpeg" alt="Cozy moment at home">
+          <img src="images/sleep.jpeg" alt="Cozy moment">
         </div>
       </div>
 
@@ -451,10 +416,10 @@
             Beaches, temples, and endless laughter —
             every moment in Thailand felt like a story we were writing together.
           </p>
-          <img src="images/Thailand_beach.jpeg" alt="Our Thailand adventure">
-          <img src="images/Thailand_meal.jpeg" alt="Our Thailand adventure">
-          <img src="images/Thailand_Kayak.jpeg" alt="Our Thailand adventure">
-          <img src="images/Thailand_street.jpeg" alt="Our Thailand adventure">
+          <img src="images/Thailand_beach.jpeg" alt="Beach">
+          <img src="images/Thailand_meal.jpeg" alt="Meal">
+          <img src="images/Thailand_Kayak.jpeg" alt="Kayak">
+          <img src="images/Thailand_street.jpeg" alt="Street">
         </div>
       </div>
 
@@ -463,10 +428,10 @@
           <h3>Goa trip</h3>
           <div class="date">25 Dec 2025</div>
           <p>
-            Watching you fall asleep, I realized how peaceful it feels just being near you.
-            Some moments don’t need words — they just stay in your heart.
+            The best way to end the year and start a new one. 
+            Sun, sand, and you.
           </p>
-          <img src="images/Goa_night.jpeg" alt="Cozy moment at home">
+          <img src="images/Goa_night.jpeg" alt="Goa night">
         </div>
       </div>
     </section>
@@ -498,7 +463,7 @@
         document.getElementById("content").classList.add("unlocked");
 
         const music = document.getElementById("bg-music");
-        music.volume = 0.3; // soft & romantic
+        music.volume = 0.3; 
         music.play();
 
       } else {
@@ -508,5 +473,4 @@
   </script>
 
 </body>
-
 </html>
