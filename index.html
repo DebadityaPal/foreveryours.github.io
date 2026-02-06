@@ -265,8 +265,11 @@
     </footer>
   </main>
 
+  <audio id="bg-music" loop>
+    <source src="music/oursong.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    // ✏️ CUSTOMIZE THESE
     const ACCEPTED_ANSWERS = [
       "late night calls",
       "music",
@@ -281,6 +284,11 @@
       if (ACCEPTED_ANSWERS.includes(input)) {
         document.getElementById("gate").classList.add("hidden");
         document.getElementById("content").classList.add("unlocked");
+
+        const music = document.getElementById("bg-music");
+        music.volume = 0.3; // soft & romantic
+        music.play();
+
       } else {
         error.style.display = "block";
       }
